@@ -26,16 +26,27 @@ if not status then
 	return
 end
 
+
 -- add list of plugins to install
 return packer.startup(function(use)
 	-- packer can manage itself
 	use("wbthomason/packer.nvim")
 
+    use("jeetsukumaran/vim-pythonsense")
+
+    use("norcalli/nvim-colorizer.lua")
+
+    use("karb94/neoscroll.nvim") -- good scrolling function
+    use({"ColinKennedy/toggle-lsp-diagnostics.nvim", branch="feature/disable_per_buffer"})
+    -- use('ThePrimeagen/harpoon')
+
+    use("Vimjas/vim-python-pep8-indent") -- python indentation
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
+    -- use("tweekmonster/startuptime.vim") -- check startup time logs
 
 	-- use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
 	use("folke/tokyonight.nvim")
-	use("lukas-reineke/indent-blankline.nvim")
+	use("lukas-reineke/indent-blankline.nvim") -- show indentation
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -43,7 +54,7 @@ return packer.startup(function(use)
 
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
-	use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
+	-- use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
 
 	-- commenting with gc
 	use({
@@ -84,7 +95,7 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- easily configure language servers
 	use("hrsh7th/cmp-nvim-lsp") -- for lsp to appear in autocompletion
 	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
-	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+	-- use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- formatting & linting
@@ -102,7 +113,7 @@ return packer.startup(function(use)
 
 	-- auto closing
 	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
-	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+	-- use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
 	-- git integration
 	use({

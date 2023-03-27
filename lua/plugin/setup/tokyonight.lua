@@ -34,6 +34,10 @@ require("tokyonight").setup({
 	-- on_highlights = function(highlights, colors) end,
 	on_highlights = function(hl, c)
 		local prompt = "#2d3149"
+        hl.CursorLineNr = {
+            -- red, warning, red1, purple, orange, yellow
+            fg = c.yellow,
+        }
 		hl.TelescopeNormal = {
 			bg = c.bg_dark,
 			fg = c.fg_dark,

@@ -3,17 +3,27 @@ local opt = vim.opt -- for conciseness
 -- MUST HAVE
 opt.termguicolors = true
 opt.number = true
+opt.relativenumber = true
 
 -- line numbers
+-- vim.cmd([[hi CursorLineNr cterm=bold]])
+-- vim.cmd([[highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE]])
 opt.cursorline = true
+-- opt.cursorlineopt = "number"
+-- vim.cmd([[
+--     autocmd ColorScheme * highlight CursorLineNr cterm=bold term=bold gui=bold
+-- ]])
 
--- line spacing
-opt.linespace = 10
+
+-- opt.lazyredraw = true
+-- opt.regexpengine=1
+
 -- tabs & indentation
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
+opt.cindent = true
 
 -- line wrapping
 opt.wrap = false
@@ -30,7 +40,7 @@ opt.signcolumn = "yes" -- Added column on the left
 opt.backspace = "indent,eol,start"
 
 -- clipboard
-opt.clipboard:append("unnamedplus")
+-- opt.clipboard:append("unnamedplus")
 
 -- split windows
 opt.splitright = true
@@ -41,8 +51,8 @@ opt.splitbelow = true
 opt.hlsearch = true -- highlight search
 opt.incsearch = true
 
-opt.scrolloff = 4 -- start scrolling when you're x lines from top
-opt.hidden = false -- prevent unsaved buffers from being hidden
+opt.scrolloff = 12 -- start scrolling when you're x lines from top
+-- opt.hidden = false -- prevent unsaved buffers from being hidden
 
 -- set nowrap "disables wrapping. I enable it again for markdown and txt files in /ftplugin
 -- set nohlsearch "removes highlighting after search
@@ -57,27 +67,27 @@ opt.hidden = false -- prevent unsaved buffers from being hidden
 -- set encoding=utf-8 "vim defaults to latin1, but will change based on locale of your environment.
 
 -- NUMBER TOGGLE: sitiom/nvim-numbertoggle
-local augroup = vim.api.nvim_create_augroup("numbertoggle", {})
+-- local augroup = vim.api.nvim_create_augroup("numbertoggle", {})
 
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
-	pattern = "*",
-	group = augroup,
-	callback = function()
-		if vim.o.nu and vim.api.nvim_get_mode().mode ~= "i" then
-			vim.opt.relativenumber = true
-		end
-	end,
-})
-
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
-	pattern = "*",
-	group = augroup,
-	callback = function()
-		if vim.o.nu then
-			vim.opt.relativenumber = false
-			vim.cmd("redraw")
-		end
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
+-- 	pattern = "*",
+-- 	group = augroup,
+-- 	callback = function()
+-- 		if vim.o.nu and vim.api.nvim_get_mode().mode ~= "i" then
+-- 			vim.opt.relativenumber = true
+-- 		end
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
+-- 	pattern = "*",
+-- 	group = augroup,
+-- 	callback = function()
+-- 		if vim.o.nu then
+-- 			vim.opt.relativenumber = false
+-- 			vim.cmd("redraw")
+-- 		end
+-- 	end,
+-- })
 
 -- END NUMBER TOGGLE

@@ -5,6 +5,7 @@ local actions = require("telescope.actions")
 
 telescope.setup({
 	defaults = {
+		path_display = { "smart" },
 		-- Default configuration for telescope goes here:
 		-- config_key = value,
 		mappings = {
@@ -22,6 +23,17 @@ telescope.setup({
 				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
 			},
 		},
+        file_ignore_patterns = {
+            "env/.*",
+            "./env/.*",
+            "env",
+            "__pycache__",
+            "__pycache__/.*",
+            ".*..xlsx",
+            ".*..csv",
+            -- ".*..ai",
+            -- ".*..parquet.*gzip..*",
+        }
 	},
 	pickers = {
 		-- Default configuration for builtin pickers goes here:

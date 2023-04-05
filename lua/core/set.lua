@@ -15,10 +15,15 @@ opt.cursorline = true
 -- ]])
 
 
+opt.foldmethod='marker'
+opt.foldlevel=0
+
+
 -- opt.lazyredraw = true
 -- opt.regexpengine=1
 
 -- tabs & indentation
+-- vim.cmd('filetype indent off')
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
@@ -51,7 +56,7 @@ opt.splitbelow = true
 opt.hlsearch = true -- highlight search
 opt.incsearch = true
 
-opt.scrolloff = 12 -- start scrolling when you're x lines from top
+opt.scrolloff = 8 -- start scrolling when you're x lines from top
 -- opt.hidden = false -- prevent unsaved buffers from being hidden
 
 -- set nowrap "disables wrapping. I enable it again for markdown and txt files in /ftplugin

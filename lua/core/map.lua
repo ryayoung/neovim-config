@@ -1,9 +1,5 @@
 vim.g.mapleader = " "
 
-local map = vim.keymap
-
-local set = map.set
-
 local function n(keys, exec, options)
 	return vim.keymap.set("n", keys, exec, options)
 end
@@ -33,6 +29,7 @@ nlr("2", ":w<bar> :source %<CR>")
 nlr("3", ":e /Users/Ryan.Young3/Desktop/test.py<CR>")
 
 n("<C-M>", "@q")
+n("zm", "za")
 
 -- Stay in visual line after indenting selection
 v("<", "<gv")

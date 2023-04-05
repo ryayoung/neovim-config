@@ -21,8 +21,7 @@ treesitter.setup({
 	},
 	-- enable indentation
 	indent = {
-        enable = false,
-        disable = { "python" },
+        enable = true,
     },
 	-- enable autotagging (w/ nvim-ts-autotag plugin)
 	autotag = { enable = false },

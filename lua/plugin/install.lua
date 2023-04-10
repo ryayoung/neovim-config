@@ -31,6 +31,7 @@ end
 return packer.startup(function(use)
 	-- packer can manage itself
 	use("wbthomason/packer.nvim")
+    use('github/copilot.vim')
 
     use("jeetsukumaran/vim-pythonsense")
 

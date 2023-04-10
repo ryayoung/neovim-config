@@ -89,6 +89,17 @@ nlr(".cg", ":cd %:p:h<CR>")
 ------------------------------------------------------------------------------------------------------
 -- PLUGIN MAPPINGS -----------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
+-- COPILOT
+nlr('ch', ":Copilot help<CR>")
+nlr('cp', ":Copilot panel<CR>")
+nlr('cs', ":Copilot status<CR>")
+nlr('cd', ":Copilot disable<CR>")
+nlr('ce', ":Copilot enable<CR>")
+
+vim.api.nvim_set_keymap('i', '<C-Space><Space>', '<Plug>(copilot-next)', {noremap = false, silent = true})
+vim.api.nvim_set_keymap('i', '<C-Space>s', '<Plug>(copilot-suggest)', {noremap = false, silent = true})
+
+
 -- VIM-RUN-PYTHON
 nlr("r", ":call ExecutePythonNewBuffer()<CR>")
 nlr("R", "5<C-w>j:q<CR><C-w><C-p>", { silent = true })

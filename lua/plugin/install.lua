@@ -26,7 +26,6 @@ if not status then
 	return
 end
 
-
 -- add list of plugins to install
 return packer.startup(function(use)
 	-- packer can manage itself
@@ -56,6 +55,14 @@ return packer.startup(function(use)
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
 	-- use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
+    --
+
+    -- use({
+    --     'iamcco/markdown-preview.nvim',
+    --     run = function() vim.fn['mkdp#util#install']() end,
+    -- })
+
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
 	-- commenting with gc
 	use({
@@ -96,7 +103,7 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- easily configure language servers
 	use("hrsh7th/cmp-nvim-lsp") -- for lsp to appear in autocompletion
 	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
-	-- use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- formatting & linting
@@ -106,10 +113,14 @@ return packer.startup(function(use)
 	-- treesitter configuration
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			ts_update()
-		end,
+		-- run = function()
+		-- 	local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+		-- 	ts_update()
+		-- end,
+        run = ":TSUpdate",
+        dependencies = {
+            'JoosepAlviste/nvim-ts-context-commentstring',
+        }
 	})
 
 	-- auto closing
@@ -128,3 +139,5 @@ return packer.startup(function(use)
 		require("packer").sync()
 	end
 end)
+
+

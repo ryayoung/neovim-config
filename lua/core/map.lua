@@ -17,54 +17,39 @@ local function vlr(keys, exec, options)
 end
 
 -- vim surround
-n("ysw", "ysiw")
-vim.api.nvim_set_keymap("n", "ysw", "ysiw", { noremap = false })
+-- n("ysw", "ysiw")
+-- vim.api.nvim_set_keymap("n", "ysw", "ysiw", { noremap = false })
+
+------------------------------------------------------------------------------------------------------
+-- NORMAL LEADER -------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+-- Tab
+nlr("t", ":tabnew<CR>")
+
+-- Use q macro
+-- n("<C-M>", "@q")
+n("<CR>", "@q")
 
 -- Save, quit, source
--- nlr("s", ":w<CR>")
 nlr("s", ":call TryWrite()<CR>", { silent = true })
 nlr("q", ":call SmartQuit()<CR>", { silent = true })
 nlr("Q", ":wqa")
 nlr("2", ":w<bar> :source %<CR>")
 nlr("3", ":e /Users/Ryan.Young3/Desktop/test.py<CR>")
 
-n("<C-M>", "@q")
-n("zm", "za")
-
--- Stay in visual line after indenting selection
-v("<", "<gv")
-v(">", ">gv")
+-- Fold remove
+nlr("fr", [[:%s/# }}}$\|# {{{$//g<CR>]])
 
 -- Open terminal
 nlr("//", ":terminal<CR>")
 
--- Keep cursor inplace when appending row beneath to current
-n("J", "mzJ`z")
-
--- Bring next element after comma down vertically
-nlr("d", "f,wi<CR><Esc>l")
-
--- Keep search terms in middle
-n("n", "nzzzv")
-n("N", "Nzzzv")
-
--- Half page jump - keep cursor in middle (disabled because of neoscroll)
--- n("<C-d>", "<C-d>zz")
--- n("<C-u>", "<C-u>zz")
-
--- Yank/paste with system clipboard
-v("y", '"+y')
+-- Yank paste system clipboard
 nlr("y", '"+y')
 nlr("p", '"+p')
 
--- Move tabs
-nlr("t", ":tabnew<CR>")
-n(">", ":tabn<CR>")
-n("<", ":tabp<CR>")
-
--- Shift visual lines up and down
-v("J", ":m '>+1<CR>gv=gv")
-v("K", ":m '<-2<CR>gv=gv")
+-- Bring next element after comma down vertically
+nlr("d", "f,wi<CR><Esc>l")
 
 -- Clear search
 nlr("l", ":nohl<CR>")
@@ -87,8 +72,53 @@ nlr(".cur", ":lcd %:p:h<CR>")
 nlr(".cg", ":cd %:p:h<CR>")
 
 ------------------------------------------------------------------------------------------------------
--- PLUGIN MAPPINGS -----------------------------------------------------------------------------------
+-- NORMAL --------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
+
+-- Easier fold toggle
+n("zm", "za")
+
+-- Keep cursor inplace when appending row beneath to current
+n("J", "mzJ`z")
+
+-- Keep search terms in middle
+n("n", "nzzzv")
+n("N", "Nzzzv")
+
+-- Move tabs
+n(">", ":tabn<CR>")
+n("<", ":tabp<CR>")
+
+------------------------------------------------------------------------------------------------------
+-- VISUAL --------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+-- Yank/paste with system clipboard
+v("y", '"+y')
+
+-- Stay in visual line after indenting selection
+v("<", "<gv")
+v(">", ">gv")
+
+-- Shift visual lines up and down
+v("J", ":m '>+1<CR>gv=gv")
+v("K", ":m '<-2<CR>gv=gv")
+
+-- Adjust window width
+-- v("[", ':<C-U>vertical resize -5<CR>gv', { noremap = true, silent = true, nowait = true})
+-- v("]", ':<C-U>vertical resize +5<CR>gv', { noremap = true, silent = true, nowait = true})
+vim.api.nvim_set_keymap('n', '<C-p>', ':vertical resize -6<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-]>', ':vertical resize +6<CR>', { noremap = true, silent = true})
+-- n('[', ':vertical resize -5<CR>', { noremap = true, silent = true})
+-- n(']', ':vertical resize +5<CR>', { noremap = true, silent = true})
+
+------------------------------------------------------------------------------------------------------
+-- PLUGIN --------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+-- Markdown Preview
+nlr("4", ":MarkdownPreview<CR>")
+
 -- COPILOT
 nlr('ch', ":Copilot help<CR>")
 nlr('cp', ":Copilot panel<CR>")
@@ -99,22 +129,21 @@ nlr('ce', ":Copilot enable<CR>")
 vim.api.nvim_set_keymap('i', '<C-Space><Space>', '<Plug>(copilot-next)', {noremap = false, silent = true})
 vim.api.nvim_set_keymap('i', '<C-Space>s', '<Plug>(copilot-suggest)', {noremap = false, silent = true})
 
-
 -- VIM-RUN-PYTHON
 nlr("r", ":call ExecutePythonNewBuffer()<CR>")
 nlr("R", "5<C-w>j:q<CR><C-w><C-p>", { silent = true })
 
--- vim-maximizer
+-- VIM-MAXIMIZER
 nlr("m", ":MaximizerToggle<CR>")
 
--- Commenter (we need recursive version of mapping)
+-- COMMENTER (we need recursive version of mapping)
 vim.api.nvim_set_keymap("n", "T", "gcc", { noremap = false })
 vim.api.nvim_set_keymap("v", "T", "gcgv", { noremap = false })
 
--- File explorer
+-- FILE EXPLORER
 nlr("e", ":NvimTreeToggle<CR>", { silent = true })
 
--- telescope
+-- TELESCOPE
 local blt = require("telescope.builtin")
 nlr("fn", blt.find_files, {}) -- Lists files in your current working directory, respects .gitignore
 nlr("fo", blt.oldfiles, {}) -- Lists previously open files

@@ -23,26 +23,32 @@ treesitter.setup({
 	indent = {
         enable = true,
     },
+    context_commentstring = {
+        enable = true,
+    },
 	-- enable autotagging (w/ nvim-ts-autotag plugin)
 	autotag = { enable = false },
 	-- ensure these language parsers are installed
 	ensure_installed = {
+        "html",
+        "css",
+        "scss",
+        "json",
+        "javascript",
+        "typescript",
+        "tsx",
+        "svelte",
+
 		"python",
 		"rust",
-		"json",
-		-- "javascript",
-		-- "typescript",
-		-- "tsx",
 		"yaml",
-		-- "html",
-		"css",
-		"markdown",
-		-- "svelte",
+
+        "markdown",
 		-- "graphql",
 		-- "bash",
 		"lua",
 		"vim",
-		-- "dockerfile",
+		"dockerfile",
 		"gitignore",
 	},
 	-- auto install above language parsers

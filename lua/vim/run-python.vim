@@ -83,7 +83,9 @@ fun! ExecutePythonNewBuffer()
     " call setline(".", "'----- PYTHON OUTPUT FOR " . s:current_buffer_file_path . " -----'")
 
     " resize window to content length
-    if line('$') < 30
+    if line('$') < 3
+        silent exe 'resize 10'
+    elseif line('$') < 30
         silent exe 'resize' . (line('$') + 3)
     else
         silent exe 'resize 33' 

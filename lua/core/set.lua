@@ -15,7 +15,7 @@ opt.cursorline = true
 -- ]])
 
 
-opt.foldmethod='marker'
+-- opt.foldmethod='marker'
 opt.foldlevel=0
 
 
@@ -96,3 +96,17 @@ opt.scrolloff = 8 -- start scrolling when you're x lines from top
 -- })
 
 -- END NUMBER TOGGLE
+
+
+
+opt.listchars = {
+    tab = ">-",        -- Set the character(s) displayed for a tab
+    space = "␣",       -- Set the character displayed for a space
+    trail = "•",       -- Set the character displayed for trailing spaces
+    eol = "↲",         -- Set the character displayed for newline (end of line)
+    extends = "⟩",     -- Set the character displayed for characters that extend beyond the text width
+    precedes = "⟨",    -- Set the character displayed for characters preceding the text width
+}
+
+-- Enable the display of the characters specified above
+opt.list = false

@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
--- local typescript = require("typescript")
+local typescript = require("typescript")
 
 local keymap = vim.keymap -- for conciseness
 
@@ -19,7 +19,7 @@ local on_attach = function(client, bufnr) -- _ is 'client'
 	keymap.set("n", "<leader>C", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
 	keymap.set("n", "<leader>nd", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- show diagnostics for cursor
 	keymap.set("n", "<leader>nD", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- show  diagnostics for line
-	-- keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
+	keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
 	-- keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
 	-- keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	-- keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
@@ -59,29 +59,36 @@ lspconfig["html"].setup({
 	on_attach = on_attach,
 })
 
+-- configure svelte server
+lspconfig["svelte"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- configure typescript server with plugin
--- typescript.setup({
--- 	server = {
--- 		capabilities = capabilities,
--- 		on_attach = on_attach,
--- 	},
--- })
+typescript.setup({
+	server = {
+		capabilities = capabilities,
+		on_attach = on_attach,
+	},
+})
 
 -- configure css server
-if _G.CSSLSP then
-	lspconfig["cssls"].setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-	})
-end
+-- if _G.CSSLSP then
+lspconfig["cssls"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+-- end
 
 -- configure tailwindcss server
-if _G.CSSLSP then
-	lspconfig["tailwindcss"].setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-	})
-end
+-- if _G.CSSLSP then
+lspconfig["tailwindcss"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    filetypes = { "html", "css", "scss", "typescriptreact", "javascriptreact", "jsx", "tsx", "javascript", "typescript", "svelte"},
+})
+-- end
 
 -- configure emmet language server
 lspconfig["emmet_ls"].setup({

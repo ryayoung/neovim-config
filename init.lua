@@ -2,7 +2,6 @@
 _G.PythonLSP = true
 _G.CSSLSP = false
 
-
 vim.cmd("source ~/.config/nvim/lua/vim/run-python.vim")
 vim.cmd("source ~/.config/nvim/lua/vim/vim-core.vim")
 
@@ -35,6 +34,7 @@ nlrf("vrc", ":e ~/.config/nvim/init.lua")
 nlrf("map", ":e ~/.config/nvim/lua/core/map.lua")
 nlrf("set", ":e ~/.config/nvim/lua/core/set.lua")
 nlrf("lsp", ":e ~/.config/nvim/lua/plugin/setup/lspconfig.lua")
+nlrf("ini", ":e ~/.config/nvim/init.lua")
 
 
 vim.cmd([[ 

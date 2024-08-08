@@ -27,6 +27,9 @@ end
 -- Tab
 nlr("t", ":tabnew<CR>")
 
+-- LSP Restart
+nlr('`', ':LspRestart<CR>')
+
 -- Use q macro
 -- n("<C-M>", "@q")
 n("<CR>", "@q")
@@ -112,6 +115,15 @@ vim.api.nvim_set_keymap('n', '<C-]>', ':vertical resize +6<CR>', { noremap = tru
 -- n('[', ':vertical resize -5<CR>', { noremap = true, silent = true})
 -- n(']', ':vertical resize +5<CR>', { noremap = true, silent = true})
 
+
+------------------------------------------------------------------------------------------------------
+-- TERMINAL ------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+-- Escape terminal
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
+
+
 ------------------------------------------------------------------------------------------------------
 -- PLUGIN --------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
@@ -120,14 +132,14 @@ vim.api.nvim_set_keymap('n', '<C-]>', ':vertical resize +6<CR>', { noremap = tru
 nlr("4", ":MarkdownPreview<CR>")
 
 -- COPILOT
-nlr('ch', ":Copilot help<CR>")
-nlr('cp', ":Copilot panel<CR>")
-nlr('cs', ":Copilot status<CR>")
-nlr('cd', ":Copilot disable<CR>")
-nlr('ce', ":Copilot enable<CR>")
-
-vim.api.nvim_set_keymap('i', '<C-Space><Space>', '<Plug>(copilot-next)', {noremap = false, silent = true})
-vim.api.nvim_set_keymap('i', '<C-Space>s', '<Plug>(copilot-suggest)', {noremap = false, silent = true})
+-- nlr('ch', ":Copilot help<CR>")
+-- nlr('cp', ":Copilot panel<CR>")
+-- nlr('cs', ":Copilot status<CR>")
+-- nlr('cd', ":Copilot disable<CR>")
+-- nlr('ce', ":Copilot enable<CR>")
+--
+-- vim.api.nvim_set_keymap('i', '<C-Space><Space>', '<Plug>(copilot-next)', {noremap = false, silent = true})
+-- vim.api.nvim_set_keymap('i', '<C-Space>s', '<Plug>(copilot-suggest)', {noremap = false, silent = true})
 
 -- VIM-RUN-PYTHON
 nlr("r", ":call ExecutePythonNewBuffer()<CR>")

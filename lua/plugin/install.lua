@@ -30,12 +30,17 @@ end
 return packer.startup(function(use)
 	-- packer can manage itself
 	use("wbthomason/packer.nvim")
-    use('github/copilot.vim')
+    use({
+        'zbirenbaum/copilot.lua',
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require('plugin.setup.copilot')
+        end,
+    })
 
     use("jeetsukumaran/vim-pythonsense")
-
     use("norcalli/nvim-colorizer.lua")
-
     use("karb94/neoscroll.nvim") -- good scrolling function
     use({"ColinKennedy/toggle-lsp-diagnostics.nvim", branch="feature/disable_per_buffer"})
     -- use('ThePrimeagen/harpoon')
@@ -46,7 +51,7 @@ return packer.startup(function(use)
 
 	-- use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
 	use("folke/tokyonight.nvim")
-	use("lukas-reineke/indent-blankline.nvim") -- show indentation
+	use({"lukas-reineke/indent-blankline.nvim", main = "ibl"}) -- show indentation
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -56,11 +61,6 @@ return packer.startup(function(use)
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
 	-- use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
     --
-
-    -- use({
-    --     'iamcco/markdown-preview.nvim',
-    --     run = function() vim.fn['mkdp#util#install']() end,
-    -- })
 
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
@@ -82,7 +82,8 @@ return packer.startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 
 	-- fuzzy finding w/ telescope
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+	-- use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { { "nvim-lua/plenary.nvim" } } }) -- fuzzy finder
 
 	-- autocompletion

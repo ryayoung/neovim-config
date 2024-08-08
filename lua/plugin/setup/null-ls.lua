@@ -13,8 +13,8 @@ null_ls.setup({
 	sources = {
 		--  to disable file types use
 		--  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
-		formatting.prettier.with({filetypes = {"javascript", "typescript", "css", "scss", "json", "html", "markdown", "svelte", "jsx", "tsx"}}), -- js/ts formatter
-		formatting.black,
+		formatting.prettier.with({filetypes = {"javascript", "typescript", "ts", "js", "css", "scss", "json", "html", "markdown", "svelte", "jsx", "tsx"}}), -- js/ts formatter
+		formatting.black.with({ extra_args = { "--skip-string-normalization" } }),
 		formatting.stylua, -- lua formatter
 		-- diagnostics.eslint_d.with({ -- js/ts linter
 		-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)

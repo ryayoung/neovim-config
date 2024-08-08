@@ -46,12 +46,16 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-if _G.PythonLSP then
-	lspconfig["pyright"].setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-	})
-end
+-- if _G.PythonLSP then
+lspconfig["pyright"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+-- end
+lspconfig["rust_analyzer"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
 
 -- configure html server
 lspconfig["html"].setup({
@@ -86,7 +90,7 @@ lspconfig["cssls"].setup({
 lspconfig["tailwindcss"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    filetypes = { "html", "css", "scss", "typescriptreact", "javascriptreact", "jsx", "tsx", "javascript", "typescript", "svelte"},
+    filetypes = { "html", "css", "scss", "sass", "typescriptreact", "javascriptreact", "jsx", "tsx", "javascript", "typescript", "svelte"},
 })
 -- end
 

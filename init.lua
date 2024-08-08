@@ -2,10 +2,13 @@
 _G.PythonLSP = true
 _G.CSSLSP = false
 
+vim.o.shortmess = vim.o.shortmess .. 'I'
+
 vim.cmd("source ~/.config/nvim/lua/vim/run-python.vim")
 vim.cmd("source ~/.config/nvim/lua/vim/vim-core.vim")
 
 require("core.set")
+require("core.pyenv")
 
 require("plugin.install")
 require("plugin.setup.tokyonight") -- COLORSCHEME
@@ -25,6 +28,11 @@ require("plugin.setup.lspsaga") --
 require("plugin.setup.null-ls") --
 
 require("core.map")
+
+if vim.g.neovide then
+    require("core.neovide")
+end
+
 
 local function nlrf(keys, exec, options)
 	return vim.keymap.set("n", "<leader>." .. keys, exec .. "<CR>", options)

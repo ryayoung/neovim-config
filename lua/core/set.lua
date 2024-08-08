@@ -14,6 +14,9 @@ opt.cursorline = true
 --     autocmd ColorScheme * highlight CursorLineNr cterm=bold term=bold gui=bold
 -- ]])
 
+-- SWAP FILES AND AUTORELOAD
+opt.swapfile = false
+opt.autoread = true
 
 -- opt.foldmethod='marker'
 opt.foldlevel=0
@@ -38,7 +41,7 @@ opt.ignorecase = true -- all seaches are case INsensitive
 opt.smartcase = true -- when this and ignorecase are enabled, search is case sensitive unless you use uppercase letters
 
 -- appearance
--- opt.background = "dark"
+opt.background = "dark"
 opt.signcolumn = "yes" -- Added column on the left
 
 -- backspace

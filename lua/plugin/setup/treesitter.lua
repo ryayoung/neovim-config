@@ -45,7 +45,7 @@ treesitter.setup({
 
         "markdown",
 		-- "graphql",
-		-- "bash",
+		"bash",
 		"lua",
 		"vim",
 		"dockerfile",

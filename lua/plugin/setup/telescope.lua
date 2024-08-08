@@ -24,16 +24,13 @@ telescope.setup({
 			},
 		},
         file_ignore_patterns = {
-            -- "env/.*",
-            -- "./env/.*",
-            -- "env",
-            "__pycache__",
             "node_modules",
             "__pycache__/.*",
-            ".*..xlsx",
-            ".*..csv",
-            -- ".*..ai",
-            -- ".*..parquet.*gzip..*",
+            ".*%.xlsx",
+            ".*%.csv",
+            ".*%.ai",
+            ".*%.br",
+            ".*%.gz",
         }
 	},
 	pickers = {
@@ -54,3 +51,4 @@ telescope.setup({
 		-- please take a look at the readme of the extension you want to configure
 	},
 })
+require('telescope').load_extension('fzf')

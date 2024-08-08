@@ -30,12 +30,28 @@ end
 return packer.startup(function(use)
 	-- packer can manage itself
 	use("wbthomason/packer.nvim")
+    use({
+        'zbirenbaum/copilot.lua',
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require('plugin.setup.copilot')
+        end,
+    })
 
+    use("jeetsukumaran/vim-pythonsense")
+    use("norcalli/nvim-colorizer.lua")
+    use("karb94/neoscroll.nvim") -- good scrolling function
+    use({"ColinKennedy/toggle-lsp-diagnostics.nvim", branch="feature/disable_per_buffer"})
+    -- use('ThePrimeagen/harpoon')
+
+    use("Vimjas/vim-python-pep8-indent") -- python indentation
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
+    -- use("tweekmonster/startuptime.vim") -- check startup time logs
 
 	-- use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
 	use("folke/tokyonight.nvim")
-	use("lukas-reineke/indent-blankline.nvim")
+	use({"lukas-reineke/indent-blankline.nvim", main = "ibl"}) -- show indentation
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -43,7 +59,10 @@ return packer.startup(function(use)
 
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
-	use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
+	-- use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
+    --
+
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
 	-- commenting with gc
 	use({
@@ -63,7 +82,8 @@ return packer.startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 
 	-- fuzzy finding w/ telescope
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+	-- use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { { "nvim-lua/plenary.nvim" } } }) -- fuzzy finder
 
 	-- autocompletion
@@ -94,15 +114,19 @@ return packer.startup(function(use)
 	-- treesitter configuration
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			ts_update()
-		end,
+		-- run = function()
+		-- 	local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+		-- 	ts_update()
+		-- end,
+        run = ":TSUpdate",
+        dependencies = {
+            'JoosepAlviste/nvim-ts-context-commentstring',
+        }
 	})
 
 	-- auto closing
 	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
-	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+	-- use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
 	-- git integration
 	use({
@@ -116,3 +140,5 @@ return packer.startup(function(use)
 		require("packer").sync()
 	end
 end)
+
+

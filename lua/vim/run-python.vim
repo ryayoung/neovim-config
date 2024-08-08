@@ -22,8 +22,9 @@ fun! ExecutePythonNewBuffer()
     " get file path of current file
     let s:current_buffer_file_path = expand("%")
 
-    let s:output_buffer_name = ">>> Python Output for " . s:current_buffer_file_path
-    let s:output_buffer_filetype = "output"
+    let s:output_buffer_name = "Python Output"
+    " let s:output_buffer_name = ">>> Python Output for " . s:current_buffer_file_path
+    let s:output_buffer_filetype = "markdown"
 
     " reuse existing buffer window if it exists otherwise create a new one
     if !exists("s:buf_nr") || !bufexists(s:buf_nr)
@@ -36,8 +37,9 @@ fun! ExecutePythonNewBuffer()
         silent exe bufwinnr(s:buf_nr) . 'wincmd w'
     endif
 
-    " silent exe "setlocal filetype=" . s:output_buffer_filetype
-    silent exe "setlocal filetype=typescript"
+
+    silent exe "setlocal filetype=" . s:output_buffer_filetype
+    " silent exe "setlocal filetype=text"
     setlocal bufhidden=delete "When buffer is closed, it is deleted
     setlocal buftype=nofile "Tells vim this buffer isn't related to a file and won't be written
     setlocal noswapfile "Prevents a swap file being created
@@ -81,7 +83,9 @@ fun! ExecutePythonNewBuffer()
     " call setline(".", "'----- PYTHON OUTPUT FOR " . s:current_buffer_file_path . " -----'")
 
     " resize window to content length
-    if line('$') < 30
+    if line('$') < 3
+        silent exe 'resize 10'
+    elseif line('$') < 30
         silent exe 'resize' . (line('$') + 3)
     else
         silent exe 'resize 33' 
@@ -90,6 +94,9 @@ fun! ExecutePythonNewBuffer()
     " make the buffer non modifiable
     setlocal readonly
     setlocal nomodifiable
+
+    " Disable diagnostics
+    silent exe "lua vim.diagnostic.disable(0)"
 
     " Move cursor back to original buffer
     silent exe "call feedkeys('\<c-w>\<c-p>')"

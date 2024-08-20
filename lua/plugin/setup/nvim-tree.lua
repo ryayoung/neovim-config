@@ -26,6 +26,10 @@ require("nvim-tree").setup({
 					arrow_open = "",
 				},
 			},
+            show = {
+                folder = false,
+                file = false,
+            },
 		},
 	},
 	actions = {
@@ -37,6 +41,6 @@ require("nvim-tree").setup({
 	},
     filters = {
         git_ignored = false,
-        custom = {".DS_Store", "__pycache__"},
+        custom = {".DS_Store", "__pycache__", "node_modules", "*.git", "*.br", "*.gz"},
     }
 })

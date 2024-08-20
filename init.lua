@@ -21,7 +21,7 @@ require("plugin.setup.neoscroll") -- Animated scrolling
 require("plugin.setup.toggle-diagnostics") -- toggle diagnostics
 require("plugin.setup.cmp_luasnip_lspkind") --
 require("plugin.setup.treesitter") -- SYNTAX HIGHLIGHTING
-require("plugin.setup.colorizer") -- COLORIZER
+-- require("plugin.setup.colorizer") -- COLORIZER
 require("plugin.setup.mason") --
 require("plugin.setup.lspconfig") --
 require("plugin.setup.lspsaga") --

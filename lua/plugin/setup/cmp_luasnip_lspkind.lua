@@ -1,19 +1,19 @@
 -- AUTOCOMPLETION AND SNIPPETS -------------------------------------------------------------------------------------
 
 local cmp = require("cmp")
-local luasnip = require("luasnip")
+-- local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
-require("luasnip/loaders/from_vscode").lazy_load()
+-- require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.opt.completeopt = "menu,menuone,noselect"
 
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
+	-- snippet = {
+	-- 	expand = function(args)
+	-- 		luasnip.lsp_expand(args.body)
+	-- 	end,
+	-- },
 	mapping = cmp.mapping.preset.insert({
 		["<C-K>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 		["<C-J>"] = cmp.mapping.select_next_item(), -- next suggestion
@@ -26,7 +26,7 @@ cmp.setup({
 	-- sources for autocompletion
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" }, -- lsp
-		{ name = "luasnip" }, -- snippets
+		-- { name = "luasnip" }, -- snippets
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
 	}),

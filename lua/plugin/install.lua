@@ -39,8 +39,8 @@ return packer.startup(function(use)
         end,
     })
 
-    use("jeetsukumaran/vim-pythonsense")
-    use("norcalli/nvim-colorizer.lua")
+    use("jeetsukumaran/vim-pythonsense")  -- Text objects for python classes, functions, etc.
+    -- use("norcalli/nvim-colorizer.lua")  -- Colorize color codes in files
     use("karb94/neoscroll.nvim") -- good scrolling function
     use({"ColinKennedy/toggle-lsp-diagnostics.nvim", branch="feature/disable_per_buffer"})
     -- use('ThePrimeagen/harpoon')
@@ -76,7 +76,7 @@ return packer.startup(function(use)
 	use("nvim-tree/nvim-tree.lua")
 
 	-- vs-code like icons
-	use("nvim-tree/nvim-web-devicons")
+	-- use("nvim-tree/nvim-web-devicons")
 
 	-- statusline
 	use("nvim-lualine/lualine.nvim")
@@ -92,9 +92,9 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-path") -- source for file system paths
 
 	-- snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
-	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
-	use("rafamadriz/friendly-snippets") -- useful snippets
+	-- use("L3MON4D3/LuaSnip") -- snippet engine
+	-- use("saadparwaiz1/cmp_luasnip") -- for autocompletion
+	-- use("rafamadriz/friendly-snippets") -- useful snippets
 
 	-- managing & installing lsp servers, linters & formatters
 	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
@@ -103,8 +103,8 @@ return packer.startup(function(use)
 	-- configuring lsp servers
 	use("neovim/nvim-lspconfig") -- easily configure language servers
 	use("hrsh7th/cmp-nvim-lsp") -- for lsp to appear in autocompletion
-	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
-	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+    use("nvimdev/lspsaga.nvim") -- enhanced lsp uis
+	-- use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- formatting & linting
@@ -129,12 +129,12 @@ return packer.startup(function(use)
 	-- use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
 	-- git integration
-	use({
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup()
-		end,
-	}) -- show line modifications on left hand side
+	-- use({
+	-- 	"lewis6991/gitsigns.nvim",
+	-- 	config = function()
+	-- 		require("gitsigns").setup()
+	-- 	end,
+	-- }) -- show line modifications on left hand side
 
 	if packer_bootstrap then
 		require("packer").sync()

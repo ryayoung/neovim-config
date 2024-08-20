@@ -30,6 +30,9 @@ nlr("t", ":tabnew<CR>")
 -- LSP Restart
 nlr('`', ':LspRestart<CR>')
 
+-- Close buffers
+nlr('.`', ':%bd|e#|bd#<CR>')
+
 -- Use q macro
 -- n("<C-M>", "@q")
 n("<CR>", "@q")
@@ -178,10 +181,10 @@ ShowDiagnostics = true
 function ToggleShowDiag()
 	if ShowDiagnostics then
 		ShowDiagnostics = false
-		vim.diagnostic.disable(0)
+		vim.diagnostic.enable(false)
 	else
 		ShowDiagnostics = true
-		vim.diagnostic.enable(0)
+		vim.diagnostic.enable(true)
 	end
 	-- vim.diagnostic.config({ virtual_text = ShowDiagnostics })
 end

@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local typescript = require("typescript")
+-- local typescript = require("typescript")
 
 local keymap = vim.keymap -- for conciseness
 
@@ -69,13 +69,19 @@ lspconfig["svelte"].setup({
 	on_attach = on_attach,
 })
 
--- configure typescript server with plugin
-typescript.setup({
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-	},
+
+lspconfig["tsserver"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
+
+-- configure typescript server with typescript.nvim plugin
+-- typescript.setup({
+-- 	server = {
+-- 		capabilities = capabilities,
+-- 		on_attach = on_attach,
+-- 	},
+-- })
 
 -- configure css server
 -- if _G.CSSLSP then
